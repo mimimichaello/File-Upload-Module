@@ -31,7 +31,7 @@
 
 ```bash
 git clone https://github.com/mimimichaello/File-Upload-Module.git
-cd django-yandex-upload
+cd src
 ```
 
 ### **2. Создание виртуального окружения**
