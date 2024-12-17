@@ -6,6 +6,8 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from file_upload.utils import get_download_link, upload_to_yandex_disk
+from django.contrib import messages
+from django.shortcuts import redirect
 from .forms import FileUploadForm
 from .models import UploadedFile
 import requests
@@ -51,9 +53,11 @@ class FileUploadView(LoginRequiredMixin, FormView):
                 yandex_path=yandex_path,
                 download_link=download_link,
             )
+            messages.success(self.request, "Файл успешно загружен на Яндекс.Диск!")
             return super().form_valid(form)
         else:
-            return JsonResponse({"message": "Ошибка при загрузке файла"}, status=400)
+            messages.error(self.request, "Ошибка при загрузке файла на Яндекс.Диск!")
+            return redirect("uploaded_files_list")
 
 
 class UploadedFilesListView(LoginRequiredMixin, ListView):

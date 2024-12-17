@@ -20,3 +20,4 @@ django-notifications-hq==1.8.3
 pillow==11.0.0
 django-storages==1.14.4
 boto3==1.35.82
+
