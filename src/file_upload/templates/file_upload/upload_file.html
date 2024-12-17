@@ -1,0 +1,43 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h2 class="text-3xl font-bold text-center mb-6 text-primary">Загрузить файл на Яндекс.Диск</h2>
+
+<!-- Форма для загрузки файла -->
+<div class="card w-full md:w-1/2 bg-white shadow-md p-6 rounded-lg mx-auto">
+    <form method="post" enctype="multipart/form-data" class="space-y-6" id="upload-form">
+        {% csrf_token %}
+        <div class="form-control">
+            <label class="label">
+                <span class="label-text text-lg font-medium">Выберите файл</span>
+            </label>
+            <input type="file" name="file" class="file-input file-input-bordered w-full" required />
+        </div>
+        <div class="form-control">
+            <label class="label">
+                <span class="label-text text-lg font-medium">Имя папки</span>
+            </label>
+            <input type="text" name="folder_name" placeholder="Введите имя папки" class="input input-bordered w-full" />
+        </div>
+        <button type="submit" class="btn btn-primary w-full text-lg text-white">Загрузить</button>
+    </form>
+
+    <!-- Спиннер -->
+    <div id="spinner" class="flex justify-center items-center mt-4 hidden">
+        <div class="loading loading-spinner text-primary w-16 h-16"></div>
+        <p class="text-primary font-medium ml-4">Загрузка файла...</p>
+    </div>
+</div>
+
+<!-- JavaScript для отображения спиннера -->
+<script>
+    document.getElementById("upload-form").addEventListener("submit", function () {
+        // Показываем спиннер
+        document.getElementById("spinner").classList.remove("hidden");
+
+        // Делаем кнопку неактивной, чтобы избежать двойного отправления
+        const submitButton = document.querySelector("form button[type='submit']");
+        submitButton.disabled = true;
+        submitButton.classList.add("btn-disabled");
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+*.pot
+*.pyc
+*.pyc.*
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+
+
+# Virtual environments
+env/
+venv/
+ENV/
+.env/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+
+# Django static and media files
+#staticfiles/
+#static/
+#media/
+
+
+# Local settings and secrets
+*.local_settings.py
+.env
+.env.dev
+.env.prod
+
+
+# Migrations
+*/migrations/*/ (except __init__.py)
+!*/migrations/__init__.py
+
+
+# Cache and logs
+*.log
+db.sqlite3
+*.sqlite3
+
+
+# Compiled files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+.pytest_cache/
+.coverage

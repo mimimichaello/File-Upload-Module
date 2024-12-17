@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title|default:"Модуль загрузки файлов" }}</title>
+
+    <!-- DaisyUI и TailwindCSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.22/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Django-HTMX -->
+    <script src="{% static 'js/htmx/htmx.min.js' %}"></script>
+</head>
+<body class="bg-base-100">
+    <!-- Navbar -->
+    <div class="navbar bg-base-200 shadow-md">
+        <div class="flex-1">
+            <a href="/" class="btn btn-ghost normal-case text-xl">File Manager</a>
+        </div>
+        <div class="flex-none">
+            <ul class="menu menu-horizontal px-1">
+                <li><a href="{% url 'upload_file' %}">Загрузить файл</a></li>
+                <li><a href="{% url 'uploaded_files_list' %}">Ваши файлы</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Контент страницы -->
+    <div class="container mx-auto mt-8 px-4 bg-base-600">
+        {% block content %}
+        {% endblock content %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h2 class="text-3xl font-bold text-center mb-6 text-base-600">Ваши загруженные файлы</h2>
+
+<!-- Таблица с файлами -->
+<div class="overflow-x-auto rounded-lg">
+    <table class="table w-full border-collapse border border-base-100 rounded-lg">
+        <!-- Заголовки таблицы -->
+        <thead>
+            <tr class="bg-primary text-secondary-content">
+                <th class="py-2 px-4">#</th>
+                <th class="py-2 px-4">Имя файла</th>
+                <th class="py-2 px-4">Путь на Яндекс.Диске</th>
+                <th class="py-2 px-4">Дата загрузки</th>
+                <th class="py-2 px-4">Скачать</th>
+            </tr>
+        </thead>
+        <!-- Тело таблицы -->
+        <tbody>
+            {% for file in files %}
+            <tr class="hover:bg-secondary-focus even:bg-secondary-content odd:bg-base-100">
+                <td class="py-2 px-4 border border-base-600">{{ forloop.counter }}</td>
+                <td class="py-2 px-4 border border-base-600">{{ file.file_name }}</td>
+                <td class="py-2 px-4 border border-base-600">{{ file.yandex_path }}</td>
+                <td class="py-2 px-4 border border-base-600">{{ file.uploaded_at }}</td>
+                <td class="py-2 px-4 border border-base-600 text-center">
+                    {% if file.download_link %}
+                    <a href="{{ file.download_link }}" class="btn btn-outline btn-sm btn-secondary" target="_blank">
+                        Скачать
+                    </a>
+                    {% else %}
+                    <span class="text-gray-500">Ссылка не доступна</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <!-- Сообщение при отсутствии файлов -->
+            <tr>
+                <td colspan="5" class="text-center text-white bg-base-600 py-4">
+                    Вы еще не загрузили ни одного файла.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
